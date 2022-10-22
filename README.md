@@ -1,4 +1,4 @@
-# dog-app
+# quiz-app
 
 ## Project setup
 ```

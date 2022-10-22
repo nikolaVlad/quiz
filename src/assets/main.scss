@@ -1,0 +1,118 @@
+$small: 800px;
+$bg: rgb(20, 29, 70);
+$contentBg: rgb(20, 29, 70);
+
+
+body {
+  background: $bg;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+  border-radius: 10px;
+  font-size: 0.9rem;
+  padding: 10px;
+  border: none;
+  min-width: 150px;
+
+  &:hover:not(:disabled) {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: $small) {
+    font-size: 0.7rem;
+  }
+}
+
+
+.app-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0px;
+
+  @media screen and (max-width: $small) {
+    padding: 0px;
+    height: 100vh;
+  }
+
+
+  .app-content {
+    max-width: 1000px;
+    display: flex;
+    min-height: 90vh;
+    padding: 20px 40px;
+    background-color: $contentBg;
+    border-radius: 20px;
+    flex-direction: column;
+    flex: 1;
+
+
+
+    @media screen and (min-width: $small) {
+      min-width: 800px;
+    }
+  }
+
+}
+
+.actions {
+  margin-top: auto;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+.input-text {
+  font-size: 1.3rem;
+  background-color: transparent;
+  outline: none;
+  padding: 10px;
+  border: 1px solid rgba(30, 142, 246, 0.707);
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  width: 500px;
+
+  @media screen and (max-width: $small) {
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
+
+button {
+  border-radius: 10px;
+  font-size: 0.9rem;
+  padding: 10px;
+  border: none;
+  min-width: 150px;
+
+  &:hover:not(:disabled) {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: $small) {
+    font-size: 0.8rem;
+  }
+}
+
+
+.primary-button:not(:disabled) {
+  background-color: rgba(0, 132, 255, 0.707);
+  color: white;
+}
+
+.secondary-button:not(:disabled) {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(75, 75, 75, 0.495);
+
+  &:hover {
+    background-color: rgba(75, 75, 75, 0.495);
+  }
+}
