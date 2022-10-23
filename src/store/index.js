@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    slide: 1
+    slide: 0
   },
   getters: {
     slide: state => state.slide

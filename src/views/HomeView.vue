@@ -2,8 +2,11 @@
   <template v-if="store.getters.slide < 1">
     <Welcome />
   </template>
-  <template v-else>
+  <template v-else-if="store.getters.slide <2">
     <Question />
+  </template>
+  <template v-else-if="store.getters.slide >= 2">
+    <Finish />
   </template>
 </template>
 
@@ -11,12 +14,13 @@
 import { useStore } from 'vuex'
 import Question from '@/components/question.vue'
 import Welcome from '@/components/welcome.vue'
+import Finish from '@/components/finish.vue'
 export default {
   name: 'HomeView',
   setup () {
     const store = useStore()
     return { store }
   },
-  components: { Question, Welcome }
+  components: { Question, Welcome, Finish }
 }
 </script>

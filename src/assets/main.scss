@@ -1,10 +1,11 @@
 $small: 800px;
-$bg: rgb(20, 29, 70);
-$contentBg: rgb(20, 29, 70);
+// $bg: rgb(20, 29, 70);
+$contentBg: rgb(31, 38, 68);
+// rgb(31,38,68)
 
 
 body {
-  background: $bg;
+  background: $contentBg;
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
