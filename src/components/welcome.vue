@@ -24,6 +24,7 @@ export default {
     const username = ref('')
 
     const onStart = () => {
+      store.dispatch('startQuiz', username.value)
       store.dispatch('incrementSlide')
     }
 

@@ -2,10 +2,10 @@
   <template v-if="store.getters.slide < 1">
     <Welcome />
   </template>
-  <template v-else-if="store.getters.slide <2">
+  <template v-else-if="store.getters.slide <= store.getters.questionsLength ">
     <Question />
   </template>
-  <template v-else-if="store.getters.slide >= 2">
+  <template v-else-if="store.getters.slide > store.getters.questionsLength">
     <Finish />
   </template>
 </template>

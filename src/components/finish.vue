@@ -1,28 +1,44 @@
 <template>
   <div class="wrapper">
     <div class="title">Quiz Game</div>
+
+    <h1>
+      <span style="color: aqua">{{store.getters.activeUser.username}}</span> {{ result }}
+    </h1>
+
     <div>
-      <h1>
-        {{ result }}
-      </h1>
+      Number of correct answers is: <span style="color: aqua; font-weight:800">{{store.getters.activeUser.result}} </span></div>
+    <div>
     </div>
-    <div class="actions-place replay">
-      <button style="background-color: green; color: white">
+    <div class="actions-place">
+      <button @click="onStart" style="background-color: green; color: white">
         Try one more time
       </button>
-      <button class="secondary-button">Exit</button>
+      <button @click="onExit" class="secondary-button">Exit</button>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
+import { useStore } from 'vuex'
 export default {
   name: 'finish-component',
 
   setup () {
-    const result = 'You were better then 60% of all quizer!'
+    const store = useStore()
+    const result = ref('test')
+    const onExit = () => {
+      store.commit('setSlide', 0) // Exit
+      console.log(store.getters.users)
+    }
 
-    return { result }
+    const onStart = () => {
+      store.commit('startQuiz', store.getters.activeUser.username)
+      store.commit('setSlide', 1) // Try again
+    }
+
+    return { result, store, onExit, onStart }
   }
 }
 </script>
@@ -36,6 +52,7 @@ export default {
 
   .actions-place {
     padding: 20px;
+
     * {
       margin: 1px 20px;
       font-size: 1.1rem;

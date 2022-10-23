@@ -1,50 +1,60 @@
 <template>
   <div class="wrapper">
     <div class="question-counter">
-      Question: <span>{{store.getters.slide}}</span>/ <span>10</span>
+      Question: <span style="color: aqua">{{store.getters.slide}}</span>/ <span>{{store.getters.questionsLength}}</span>
     </div>
     <hr style="width: 100%" />
+    <div style="color: aqua">{{store.getters.activeUser}}</div>
     <div class="main-place">
       <div class="question-place">
         <h1 class="question-text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident
-          velit quisquam, minus, iste rerum veritatis est blanditiis adipisci
-          laudantium amet voluptatum eum fuga, officiis similique reiciendis
-          aspernatur magni placeat deserunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident
-          velit quisquam, minus, iste rerum veritatis est blanditiis adipisci
-          laudantium amet voluptatum eum fuga, officiis similique reiciendis
-          aspernatur magni placeat deserunt.
+          {{store.getters.question.text}}
          </h1>
       </div>
-      <div class="answers-place">
-        <div class="answer-text selected">Lorem 1</div>
-        <div class="answer-text">Lorem 2</div>
-        <div class="answer-text">Lorem 3</div>
-        <div class="answer-text">Lorem 4</div>
+      <div class="answers-place" >
+        <div v-for="(answerObj, index) of store.getters.question.answers" :key="index" @click="setAnswerAndIndex(answerObj, index )" :class="
+          ['answer-text', {selected: index == answerIndex } ]">{{answerObj.text}}</div>
       </div>
     </div>
     <div class="actions">
-      <button @click="onPrevious()" class="secondary-button">{{ "< " }}Previous</button>
-      <button @click="onNext()" class=" primary-button">Next ></button>
+      <button :disabled="answerIndex < 0" @click="onNext()" class=" primary-button">Next ></button>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
 import { useStore } from 'vuex'
 export default {
   name: 'question-component',
   setup () {
     const store = useStore()
 
+    const answerIndex = ref(-1) // index of curreent answer
+    const answer = ref(null) // Answer of current question
+
+    const setAnswerIndex = (index) => {
+      answerIndex.value = index
+    }
+
+    const setAnswer = (answerObj) => {
+      answer.value = answerObj
+    }
+
+    const setAnswerAndIndex = (answerObj, index) => {
+      setAnswer(answerObj)
+      setAnswerIndex(index)
+    }
+
     const onNext = () => {
+      if (answer?.value?.isTrue) {
+        store.dispatch('incrementResult')
+      }
+      setAnswerIndex(-1)
       store.dispatch('incrementSlide')
     }
 
-    const onPrevious = () => {
-      store.dispatch('decrementSlide')
-    }
-    return { store, onNext, onPrevious }
+    return { store, onNext, answerIndex, setAnswerIndex, setAnswer, setAnswerAndIndex }
   }
 }
 </script>
@@ -67,7 +77,7 @@ export default {
     .question-place{
       margin-bottom: 40px;
       overflow: scroll;
-      height: 300px;
+      height: 200px;
 
       @media screen and (max-width: 800px) {
       height: 200px;
@@ -86,12 +96,13 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 40px;
-      gap: 20px 30px;
+      margin-bottom: 5px;
+      gap: 10px 20px;
       @media screen and (max-width: 800px) {
         flex-direction: column;
         align-items: center;
         flex-wrap: nowrap;
+      margin-bottom: 25px;
         font-size: 0.7rem;
 
     }
