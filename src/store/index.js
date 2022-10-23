@@ -9,30 +9,23 @@ export default createStore({
     activeUser: {},
     questions: [
       {
-        text: 'Test question',
-        answers: [
-          { text: 'netacnoo' },
-          { text: 'tacnoo', isTrue: true },
-          { text: 'test pod c' },
-          { text: 'test pod d' }
+        text: 'Tekst pitanja 1',
+        answers:
+        [
+          { text: 'oodgoovoor pod A' },
+          { text: 'odgovor pod B ', isTrue: true },
+          { text: 'odgovor pod C' },
+          { text: 'odgovor pod D' }
         ]
       },
       {
-        text: 'Test question 222222',
-        answers: [
-          { text: 'netacnoo' },
-          { text: 'tacnoo', isTrue: true },
-          { text: 'test pod c' },
-          { text: 'test pod d' }
-        ]
-      },
-      {
-        text: 'Test question 3333',
-        answers: [
-          { text: 'netacnoo' },
-          { text: 'netacno' },
-          { text: 'tacnoo', isTrue: true },
-          { text: 'test pod d' }
+        text: 'Tekst pitanja 1',
+        answers:
+        [
+          { text: 'oodgoovoor pod A' },
+          { text: 'odgovor pod B ' },
+          { text: 'odgovor pod C' },
+          { text: 'odgovor pod D', isTrue: true }
         ]
       }
     ]
