@@ -4,7 +4,7 @@
       Question: <span style="color: aqua">{{store.getters.slide}}</span>/ <span>{{store.getters.questionsLength}}</span>
     </div>
     <hr style="width: 100%" />
-    <div style="color: aqua">{{store.getters.activeUser}}</div>
+    <div style="color: aqua">{{store.getters.activeUser.username}}</div>
     <div class="main-place">
       <div class="question-place">
         <h1 class="question-text">
@@ -31,7 +31,7 @@ export default {
     const store = useStore()
 
     const answerIndex = ref(-1) // index of curreent answer
-    const answer = ref(null) // Answer of current question
+    const answer = ref(null) // Answer data of current question
 
     const setAnswerIndex = (index) => {
       answerIndex.value = index

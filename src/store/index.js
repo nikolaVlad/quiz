@@ -3,7 +3,9 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     slide: 0,
-    users: [], // ex. item: {username: 'Marty' , result: 2}
+    users: [
+
+    ], // ex. item: {username: 'Marty' , result: 2}
     activeUser: {},
     questions: [
       {

@@ -3,7 +3,7 @@
     <div class="title">Quiz Game</div>
 
     <h1>
-      <span style="color: aqua">{{store.getters.activeUser.username}}</span> {{ result }}
+      <span style="color: aqua">{{store.getters.activeUser.username}}</span> {{ resultText }}
     </h1>
 
     <div>
@@ -22,12 +22,13 @@
 <script>
 import { ref } from '@vue/reactivity'
 import { useStore } from 'vuex'
+import { onMounted } from '@vue/runtime-core'
 export default {
   name: 'finish-component',
 
   setup () {
     const store = useStore()
-    const result = ref('test')
+    const resultText = ref('')
     const onExit = () => {
       store.commit('setSlide', 0) // Exit
       console.log(store.getters.users)
@@ -38,7 +39,22 @@ export default {
       store.commit('setSlide', 1) // Try again
     }
 
-    return { result, store, onExit, onStart }
+    const calculateResult = () => {
+      const otherUsers = store.getters.users.filter(u => u.username !== store.getters.activeUser.username)
+
+      const worseUsers = otherUsers.filter(u =>
+        u.result <= store.getters.activeUser.result)
+
+      const betterInPercent = (worseUsers.length / otherUsers.length) * 100
+
+      resultText.value = `you were better then ${Math.floor(betterInPercent) || 100}% of all quizer`
+    }
+
+    onMounted(() => {
+      calculateResult()
+    })
+
+    return { resultText, store, onExit, onStart }
   }
 }
 </script>
