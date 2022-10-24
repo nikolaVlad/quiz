@@ -4,30 +4,108 @@ export default createStore({
   state: {
     slide: 0,
     users: [
-
     ], // ex. item: {username: 'Marty' , result: 2}
     activeUser: {},
     questions: [
       {
-        text: 'Tekst pitanja 1',
+        text: 'What is the capital of Malta?',
         answers:
-        [
-          { text: 'oodgoovoor pod A' },
-          { text: 'odgovor pod B ', isTrue: true },
-          { text: 'odgovor pod C' },
-          { text: 'odgovor pod D' }
-        ]
+          [
+            { text: 'Mdina' },
+            { text: 'Valletta', isTrue: true },
+            { text: 'Birgu' },
+            { text: 'Senglea' }
+          ]
       },
+
       {
-        text: 'Tekst pitanja 1',
+        text: 'Malta is a country in the Mediterranean Sea. Which country is north of the Maltese Archipelago?',
         answers:
-        [
-          { text: 'oodgoovoor pod A' },
-          { text: 'odgovor pod B ' },
-          { text: 'odgovor pod C' },
-          { text: 'odgovor pod D', isTrue: true }
-        ]
+          [
+            { text: 'Italy', isTrue: true },
+            { text: 'Tunisia' },
+            { text: 'Libya' },
+            { text: 'Serbia' }
+          ]
+      },
+
+      {
+        text: 'How many inhabited islands make up the Republic of Malta?',
+        answers:
+          [
+            { text: '1' },
+            { text: '2' },
+            { text: '3', isTrue: true },
+            { text: '4' }
+          ]
+      },
+
+      {
+        text: 'What are the colours of Malta national flag?',
+        answers:
+          [
+            { text: 'Red and Blue' },
+            { text: 'White and Blue' },
+            { text: 'Green and White' },
+            { text: 'Red and White', isTrue: true }
+          ]
+      },
+
+      {
+        text: 'On which year did Malta gain its independence?',
+        answers:
+          [
+            { text: '1979' },
+            { text: '1968' },
+            { text: '1974' },
+            { text: '1964', isTrue: true }
+          ]
+      },
+
+      {
+        text: 'Which Maltese town is the most populated?',
+        answers:
+          [
+            { text: 'Birkirkara', isTrue: true },
+            { text: 'Silema' },
+            { text: 'Valletta' },
+            { text: 'Qormi' }
+          ]
+      },
+
+      {
+        text: 'To which year does Malta history date back?',
+        answers:
+          [
+            { text: '800 BC' },
+            { text: '3800 BC', isTrue: true },
+            { text: '50 BC' },
+            { text: '400 AD' }
+          ]
+      },
+
+      {
+        text: 'To which year does Malta history date back?',
+        answers:
+          [
+            { text: '800 BC' },
+            { text: '3800 BC', isTrue: true },
+            { text: '50 BC' },
+            { text: '400 AD' }
+          ]
+      },
+
+      {
+        text: 'What was the old capital of Malta?',
+        answers:
+          [
+            { text: 'Mdina', isTrue: true },
+            { text: 'Valletta' },
+            { text: 'Dingli' },
+            { text: 'Silema' }
+          ]
       }
+
     ]
   },
   getters: {

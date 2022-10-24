@@ -1,5 +1,6 @@
 <template>
-  <div class="wrapper">
+  <div ref="mirrorRef" ></div>
+  <div ref="questionRef" class="wrapper">
     <div class="question-counter">
       Question: <span style="color: aqua">{{store.getters.slide}}</span>/ <span>{{store.getters.questionsLength}}</span>
     </div>
@@ -17,7 +18,7 @@
       </div>
     </div>
     <div class="actions">
-      <button :disabled="answerIndex < 0" @click="onNext()" class=" primary-button">Next ></button>
+      <button :disabled="answerIndex < 0" @click="onNext()" class=" primary-button">Next</button>
     </div>
   </div>
 </template>
@@ -27,11 +28,17 @@ import { ref } from '@vue/reactivity'
 import { useStore } from 'vuex'
 export default {
   name: 'question-component',
-  setup () {
+  setup (props, ctx) {
     const store = useStore()
 
     const answerIndex = ref(-1) // index of curreent answer
     const answer = ref(null) // Answer data of current question
+
+    // template reft
+    const questionRef = ref(null)
+    const mirrorRef = ref(null)
+
+    const mirrorIsShow = ref(false)
 
     const setAnswerIndex = (index) => {
       answerIndex.value = index
@@ -46,7 +53,23 @@ export default {
       setAnswerIndex(index)
     }
 
+    const animate = () => {
+      mirrorIsShow.value = true
+      mirrorRef.value.innerHTML = questionRef.value.outerHTML
+      window.scroll({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      })
+
+      setTimeout(() => {
+        mirrorRef.value.innerHTML = ''
+      }, 1000)
+    }
+
     const onNext = () => {
+      if (store.getters.slide <= store.getters.questionsLength) {
+        animate()
+      }
       if (answer?.value?.isTrue) {
         store.dispatch('incrementResult')
       }
@@ -54,7 +77,7 @@ export default {
       store.dispatch('incrementSlide')
     }
 
-    return { store, onNext, answerIndex, setAnswerIndex, setAnswer, setAnswerAndIndex }
+    return { store, onNext, answerIndex, setAnswerIndex, setAnswer, setAnswerAndIndex, mirrorRef, questionRef, mirrorIsShow }
   }
 }
 </script>
@@ -62,7 +85,6 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   display: flex;
-
   .main-place {
     height: 100%;
     display: flex;
