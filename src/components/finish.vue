@@ -47,7 +47,7 @@ export default {
 
       const betterInPercent = (worseUsers.length / otherUsers.length) * 100
 
-      resultText.value = `you were better then ${Math.floor(betterInPercent) || 100}% of all quizer`
+      resultText.value = `you were better then  ${isNaN(Math.floor(betterInPercent)) ? 100 : Math.floor(betterInPercent)}% of all quizer`
     }
 
     onMounted(() => {

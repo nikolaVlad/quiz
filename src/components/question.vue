@@ -1,5 +1,5 @@
 <template>
-  <div ref="mirrorRef" ></div>
+  <div v-show="mirrorIsShow" ref="mirrorRef" ></div>
   <div ref="questionRef" class="wrapper">
     <div class="question-counter">
       Question: <span style="color: aqua">{{store.getters.slide}}</span>/ <span>{{store.getters.questionsLength}}</span>
@@ -54,17 +54,16 @@ export default {
     }
 
     const animate = () => {
-      mirrorIsShow.value = true
+      mirrorRef.value.style.display = 'block'
       mirrorRef.value.innerHTML = questionRef.value.outerHTML
       window.scroll({
         top: window.innerHeight,
         behavior: 'smooth'
       })
 
-      console.log(window)
-
       setTimeout(() => {
-        mirrorRef.value.innerHTML = ''
+        mirrorRef.value.style.display = 'none'
+        mirrorIsShow.value = false
       }, 1000)
     }
 

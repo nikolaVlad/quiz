@@ -85,17 +85,6 @@ export default createStore({
       },
 
       {
-        text: 'To which year does Malta history date back?',
-        answers:
-          [
-            { text: '800 BC' },
-            { text: '3800 BC', isTrue: true },
-            { text: '50 BC' },
-            { text: '400 AD' }
-          ]
-      },
-
-      {
         text: 'What was the old capital of Malta?',
         answers:
           [
