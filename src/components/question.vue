@@ -61,13 +61,15 @@ export default {
         behavior: 'smooth'
       })
 
+      console.log(window)
+
       setTimeout(() => {
         mirrorRef.value.innerHTML = ''
       }, 1000)
     }
 
     const onNext = () => {
-      if (store.getters.slide <= store.getters.questionsLength) {
+      if (store.getters.slide < store.getters.questionsLength) {
         animate()
       }
       if (answer?.value?.isTrue) {
