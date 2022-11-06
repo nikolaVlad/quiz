@@ -99,8 +99,8 @@ export default {
 
     .question-place{
       margin-bottom: 40px;
-      overflow: scroll;
       height: 200px;
+      overflow: hidden;
 
       @media screen and (max-width: 800px) {
       height: 200px;
